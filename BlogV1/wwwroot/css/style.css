@@ -11,7 +11,7 @@ html, .main {
 	margin:0;
 }
 .main {
-	background:#f3f1f1 url(images/header_bg.jpg) repeat-x center 11px;
+	background:#f3f1f1 url(/images/header_bg.jpg) repeat-x center 11px;
 }
 .clr {
 	clear:both;
