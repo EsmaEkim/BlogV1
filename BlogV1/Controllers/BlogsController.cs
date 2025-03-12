@@ -22,7 +22,7 @@ namespace BlogV1.Controllers
         public IActionResult Details(int id)
         {
             var blog = _context.Blogs.Where(x => x.Id == id).FirstOrDefault();
-            return View();
+            return View(blog);
         }
     }
 }
