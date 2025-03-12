@@ -6,7 +6,7 @@
         <div class="article">
             <h2><span>item.Name</span></h2>
             <div class="clr"></div>
-            <p><span class="date">@item.PublishDate.ToString("dd/MM/yyyy HH:mm")</span> |&nbsp; Tags <a href="#">@item.Tags</a></p>
+            <p><span class="date">@item.PublishDate.ToString("MMMM d\\t\\h, yyyy 'at' h:mm tt")</span> |&nbsp; Tags <a href="#">@item.Tags</a></p>
             @*<img src="/images/img1.jpg" width="625" height="205" alt="" /> *@
             <img src="@item.ImageUrl" width="625" height="205" alt="" />
             @{

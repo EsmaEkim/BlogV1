@@ -1,4 +1,5 @@
 ﻿using BlogV1.Context;
+using BlogV1.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogV1.Controllers
@@ -22,7 +23,17 @@ namespace BlogV1.Controllers
         public IActionResult Details(int id)
         {
             var blog = _context.Blogs.Where(x => x.Id == id).FirstOrDefault();
+            var comment = _context.Comments.Where(x => x.BlogId == id).ToList();
+            ViewBag.Comments = comment.ToList();
             return View(blog);
+        }
+        [HttpPost]
+        public IActionResult CreateComment(Comment model)
+        {
+            model.PublishDate = DateTime.Now;
+            _context.Comments.Add(model);
+            _context.SaveChanges();
+            return RedirectToAction("Details", new {id= model.BlogId});
         }
     }
 }
