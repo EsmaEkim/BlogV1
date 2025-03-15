@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "/Views/Shared/_AdminLayout.cshtml";
+}
+@model Blog
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Edit Blog</h1>
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+    </a>
+</div>
+
+<form class="user">
+    <div class="form-group">
+        <input type="text" class="form-control form-control-user"
+        id="blogname" aria-describedby="blogname"
+        placeholder="Enter Blog Title..." value="@Model.Name" required>
+    </div>
+    <div class="form-group">
+        <textarea type="text" class="form-control form-control-user"
+        id="blogdescription" placeholder=" Enter Explanation" required>@Model.Description</textarea>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control form-control-user"
+        id="blogimageurl" aria-describedby="blogimageurl"
+        placeholder="Enter Picture URL"
+        value="@Model.ImageUrl" required
+        >
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control form-control-user"
+        id="blogtags" aria-describedby="blogtags"
+        placeholder="Enter Blog Tags..."
+        value="@Model.Tags" required
+        >
+    </div>
+
+    <a href="#" class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+            <i class="fas fa-check"></i>
+        </span>
+        <span class="text">Save</span>
+    </a>
+
+    <a href="#" class="btn btn-danger btn-icon-split">
+        <span class="icon text-white-50">
+            <i class="fas fa-trash"></i>
+        </span>
+        <span class="text">Cancel</span>
+    </a>
+    <a href="#" class="btn btn-info btn-icon-split">
+        <span class="icon text-white-50">
+            <i class="fas fa-info-circle"></i>
+        </span>
+        <span class="text">Show Comments</span>
+    </a>
+    <a href="#" class="btn btn-secondary btn-icon-split">
+        <span class="icon text-white-50">
+            <i class="fas fa-arrow-right"></i>
+        </span>
+        <span class="text">Come Back</span>
+    </a>
+
+    @if (@Model.Status == 1)
+    {
+        <a href="#" class="btn btn-warning btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            <span class="text">Close</span>
+        </a>
+    }
+    else
+    {
+        <a href="#" class="btn btn-primary btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-flag"></i>
+            </span>
+            <span class="text">Open</span>
+        </a>
+    }
+
+    
+</form>
