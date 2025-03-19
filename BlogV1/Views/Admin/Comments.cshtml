@@ -1,20 +1,20 @@
 ﻿@{
     Layout = "/Views/Shared/_AdminLayout.cshtml";
 }
-@Model List<Blog>
+@Model List<Comment>
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">My Blogs</h1>
+        <h1 class="h3 mb-0 text-gray-800">My Comments</h1>
         <a href="/Admin/CreateBlog" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-download fa-sm text-white-50"></i> Add Blog
+            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
         </a>
     </div>
-    @if(Model.Count != 0)
+    @if (Model.Count != 0)
     {
 
 
-        @foreach(var item in Model)
+        @foreach (var item in Model)
         {
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
@@ -22,26 +22,22 @@
                     <h6 class="m-0 font-weight-bold text-primary">@item.Name</h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                        aria-labelledby="dropdownMenuLink">
+                             aria-labelledby="dropdownMenuLink">
                             <div class="dropdown-header">Actions</div>
-                            <a class="dropdown-item" href="/Admin/EditBlog?id=@item.Id">Edit</a>
-                            <a class="dropdown-item" href="/Admin/Togglestatus?id=@item.Id">Open/Close</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/Admin/DeleteBlog?id=@item.Id">Delete</a>
+                            <a class="dropdown-item" href="/Blog/Details?id=@item.BlogId">Go Blog</a>
+                            @* <a class="dropdown-item" href="/Admin/Togglestatus?id=@item.Id">Open/Close</a>
+                            <div class="dropdown-divider"></div> *@
+                            <a class="dropdown-item" href="/Admin/DeleteComment?id=@item.Id">Delete</a>
                         </div>
                     </div>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    @{
-                        string description = item.Description;
-                        string newdescription = description.Length > 45 ? description.Substring(0, 250) + "..." : description;
-                    }
-                    @newdescription
+                    @item.Message
                 </div>
             </div>
         }
@@ -50,7 +46,7 @@
     {
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Create Blog</h6>
-        </div>
+                <h6 class="m-0 font-weight-bold text-primary">No Comment</h6>
+            </div>
         </div>
     }

@@ -1,16 +1,23 @@
 ﻿using BlogV1.Context;
+using BlogV1.Identity;
 using BlogV1.Models;
+using BlogV1.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
+using System.Xml.Linq;
 
 namespace BlogV1.Controllers
 {
     public class AdminController : Controller
     {
         private readonly BlogDbContext _context;
+        private readonly UserManager<BlogIdentityUser> _userManager;
 
-        public AdminController(BlogDbContext context)
+        public AdminController(BlogDbContext context, UserManager<BlogIdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -57,7 +64,87 @@ namespace BlogV1.Controllers
             {
                 blog.Status = 1;
             }
+            _context.SaveChanges();
             return RedirectToAction("Blogs");
+        }
+
+        public IActionResult CreateBlog()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateBlog(Blog model)
+        {
+            model.PublishDate = DateTime.Now;
+            model.Status = 1;
+            _context.Blogs.Add(model);
+            _context.SaveChanges();
+            return RedirectToAction("Blogs");
+        }
+
+        public IActionResult Comments(int? blogId)
+        {
+            var comments = new List<Comment>();
+            if (blogId == null)
+            {
+               comments = _context.Comments.ToList();
+            }
+            else
+            {
+               comments = _context.Comments.Where(x => x.BlogId == blogId).ToList();
+            }
+            return View(comments);
+
+        }
+
+        public IActionResult DeleteComment(int id)
+        {
+            var comment = _context.Comments.Where(x => x.Id == id).FirstOrDefault();
+            _context.Comments.Remove(comment);
+            _context.SaveChanges();
+            return RedirectToAction("Comments");
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (model.Password==model.RePassword)
+            {
+                var user = new BlogIdentityUser
+                {
+                    Name=model.Name,
+                    Surname=model.Surname,
+                    Email=model.Email,
+                    UserName=model.Email    
+                    
+
+                };
+                var result = await _userManager.CreateAsync(user,model.Password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                return View();
+            }
+            
+
+        }
+        public IActionResult Login()
+        {
+            return View();
         }
     }
 }

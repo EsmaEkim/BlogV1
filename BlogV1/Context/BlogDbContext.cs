@@ -7,7 +7,7 @@ namespace BlogV1.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-F1UVV3S\SQLEXPRESS; database=BlogV1; Integrated Security=True; TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-F1UVV3S\\SQLEXPRESS; database=BlogV1; Integrated Security=True; TrustServerCertificate=True;");
         }
 
         public DbSet<Blog> Blogs { get; set; }
