@@ -1,10 +1,10 @@
-﻿@{
+﻿﻿@{
     Layout = "/Views/Shared/_AdminLayout.cshtml";
 }
-@model Blog
+
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Create an Account</h1>
+    <h1 class="h3 mb-0 text-gray-800">User Register</h1>
     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
         <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
     </a>
@@ -18,12 +18,12 @@
         </div>
         <div class="col-sm-6">
             <input type="text" class="form-control form-control-user" id="exampleLastName"
-                   placeholder="Last Name" name="surname">
+                   placeholder="Surname" name="surname">
         </div>
     </div>
     <div class="form-group">
         <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-               placeholder="Email Address" name="email">
+               placeholder="Email" name="email">
     </div>
     <div class="form-group row">
         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -32,43 +32,11 @@
         </div>
         <div class="col-sm-6">
             <input type="password" class="form-control form-control-user"
-                   id="exampleRepeatPassword" placeholder="Repeat Password" name="repassword">
+                   id="exampleRepeatPassword" placeholder="Repassword" name="repassword">
         </div>
     </div>
     <button type="submit" class="btn btn-primary btn-user btn-block">
-        Register Account
+        Create User
     </button>
-    <hr>
-    <a href="index.html" class="btn btn-google btn-user btn-block">
-        <i class="fab fa-google fa-fw"></i> Register with Google
-    </a>
-    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-        <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-    </a>
+
 </form>
-
-<!-- Divider -->
-<hr class="sidebar-divider">
-
-<!-- Heading -->
-<div class="sidebar-heading">
-    Users
-</div>
-
-
-
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
-       aria-expanded="true" aria-controls="collapseUsers">
-        <i class="fas fa-fw fa-cog"></i>
-        <span>Our Users</span>
-    </a>
-    <div id="collapseComment" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Comments Components:</h6>
-            <a class="collapse-item" href="/Admin/Register">Add User</a>
-            <a class="collapse-item" href="">Edit Comment</a>
-        </div>
-    </div>
-</li>
